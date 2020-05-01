@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const workoutSchema = new Schema({
    
     day: {
-        type: Data,
+        type: Date,
         default: () => new Date()
     },
     exercises:[
@@ -49,7 +49,7 @@ const workoutSchema = new Schema({
         toJson:{
             virtuals: true
         }
-        }
+    }
 );
 
 workoutSchema.virtual("totalDuration").get(function() {

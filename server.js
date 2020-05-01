@@ -1,13 +1,10 @@
 // Dependencies
 const express = require("express");
-const morgan = require("morgan");
 const mongoose = require("mongoose");
 
 // Setting up Express App
 const app = express();
-const PORT = process.env.PORT || 8000;
-
-app.use(morgan("dev"));
+const PORT = process.env.PORT || 3000;
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -22,8 +19,9 @@ mongoose.connect(MONGODB_URI, {
 })
 
 // Creating Routes
-app.use(require("./routes/apiRoutes.js"));
-app.use(require("./routes/htmlRoutes.js"));
+require("./routes/apiRoutes.js")(app);
+require("./routes/htmlRoutes.js")(app)
+
 
 // Starts the server to begin listening
 app.listen(PORT, function(){
